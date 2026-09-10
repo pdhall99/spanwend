@@ -19,6 +19,7 @@ keywords = [
     "entity recognition",
     "iob",
     "named entity recognition",
+    "natural language processing",
     "ner",
     "nlp",
     "sequence labeling",
@@ -50,12 +51,12 @@ dependencies = []
 homepage = "https://github.com/pdhall99/spanwend"
 documentation = "https://github.com/pdhall99/spanwend/blob/main/README.md"
 source = "https://github.com/pdhall99/spanwend.git"
-changelog = "https://pdhall99.github.io/spanwend/CHANGELOG"
+changelog = "https://github.com/pdhall99/spanwend/blob/main/docs/CHANGELOG.md"
 
 # --------------------------------------------------------------------------------------
 # [dependency-groups]
 [dependency-groups]
-check-code = ["ruff==0.16.1"] # keep consistent with pre-commit-config.yaml
+check-code = ["ruff==0.16.6"] # keep consistent with pre-commit-config.yaml
 check-fmt = [{ "include-group" = "check-code" }]
 check-types = ["pyrefly==1.2.0", { "include-group" = "test" }]
 dev = [
@@ -211,7 +212,7 @@ testpaths = [
     "tests",
     "src/spanwend",
     "README.md",
-    "docs/site",
+    # "docs/site",
 ]
 
 # --------------------------------------------------------------------------------------
