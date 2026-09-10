@@ -5,6 +5,9 @@ on:
     branches: ["main"]
     tags:
       - "[0-9]+.[0-9]+.[0-9]+"
+  pull_request:
+    branches: ["main"]
+    types: [ready_for_review]
   workflow_dispatch:
 
 permissions:
@@ -346,6 +349,26 @@ jobs:
         with:
           name: dist
           path: dist/
+
+  ci-gate:
+    name: CI gate
+    if: ${{ always() && (github.event_name != 'push' || github.ref_type != 'tag') }}
+    runs-on: *runner
+    timeout-minutes: *job_timeout
+    needs:
+      - precommit
+      - test
+      - build
+    steps:
+      - name: Require precommit, test, build
+        env:
+          PRECOMMIT: ${{ needs.precommit.result }}
+          TEST: ${{ needs.test.result }}
+          BUILD: ${{ needs.build.result }}
+        run: |
+          test "$PRECOMMIT" = success
+          test "$TEST" = success
+          test "$BUILD" = success
 
   pypi:
     name: Publish to PyPI
