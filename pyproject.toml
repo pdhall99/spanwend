@@ -1,0 +1,254 @@
+# [build-system]
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+# --------------------------------------------------------------------------------------
+# [project]
+[project]
+name = "spanwend"
+dynamic = ["version"]
+description = "A library for working with sequence-tagging schemes"
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = [
+    "bio",
+    "bilou",
+    "entity recognition",
+    "iob",
+    "named entity recognition",
+    "ner",
+    "nlp",
+    "sequence labeling",
+    "sequence labelling",
+    "sequence tags",
+    "span conversion",
+    "span encoding",
+    "span representation",
+]
+authors = [
+    { name = "PD Hall", email = "20580126+pdhall99@users.noreply.github.com" },
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+dependencies = []
+
+[project.urls]
+homepage = "https://github.com/pdhall99/spanwend"
+documentation = "https://github.com/pdhall99/spanwend/blob/main/README.md"
+source = "https://github.com/pdhall99/spanwend.git"
+changelog = "https://pdhall99.github.io/spanwend/CHANGELOG"
+
+# --------------------------------------------------------------------------------------
+# [dependency-groups]
+[dependency-groups]
+check-code = ["ruff==0.16.1"] # keep consistent with pre-commit-config.yaml
+check-fmt = [{ "include-group" = "check-code" }]
+check-types = ["pyrefly==1.2.0", { "include-group" = "test" }]
+dev = [
+    { "include-group" = "check-code" },
+    { "include-group" = "check-fmt" },
+    { "include-group" = "check-types" },
+    { "include-group" = "test" },
+]
+docs = [
+    "mkdocstrings-python",
+    "zensical",
+]
+test = [
+    "coverage-enable-subprocess==1.0",
+    "coverage[toml]~=7.11",
+    "hypothesis~=6.0",
+    "iobes==1.5.1",
+    "pytest~=9.0",
+    "pytest-mock~=3.10",
+    "pytest-randomly~=4.1",
+    "pytest-rerunfailures~=16.0",
+    "pytest-sugar",
+    "pytest-xdist[psutil]~=3.5",
+    "seqscore==0.9.0",
+]
+
+# --------------------------------------------------------------------------------------
+# [tool.coverage]
+[tool.coverage.run]
+source_pkgs = ["spanwend"]
+omit = ["*/_version.py"]
+branch = true
+parallel = true
+
+[tool.coverage.paths]
+spanwend = ["src/spanwend", "*/site-packages/spanwend"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "no cov",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "if 0:",
+    "raise NotImplementedError",
+    "raise AssertionError",
+    "if self\\.debug",
+    ".*\\.\\.\\.$",
+]
+
+# --------------------------------------------------------------------------------------
+# [tool.hatch]
+[tool.hatch.build.hooks.vcs]
+version-file = "src/spanwend/_version.py"
+
+[tool.hatch.build.targets.sdist]
+exclude = [".github"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/spanwend"]
+
+[tool.hatch.envs.default]
+python = "3.10"
+installer = "uv"
+dependencies = []
+
+[tool.hatch.envs.dev]
+dependency-groups = ["dev"]
+post-install-commands = ["hatch run pre-commit:install"]
+dependencies = []
+
+[tool.hatch.envs.docs]
+dependency-groups = ["docs"]
+dependencies = []
+
+[tool.hatch.envs.docs.scripts]
+build = "zensical build"
+serve = "zensical serve"
+
+[tool.hatch.envs.hatch-check-code]
+config-path = "pyproject.toml"
+dependency-groups = ["check-code"]
+dependencies = []
+
+[tool.hatch.envs.hatch-check-fmt]
+config-path = "pyproject.toml"
+dependency-groups = ["check-fmt"]
+dependencies = []
+
+[tool.hatch.envs.hatch-check-types]
+python = "3.10"
+config-path = "pyproject.toml"
+dependency-groups = ["check-types"]
+dependencies = []
+
+[tool.hatch.envs.hatch-test]
+dependency-groups = ["test"]
+dependencies = []
+default-args = []
+
+[[tool.hatch.envs.hatch-test.matrix]]
+python = ["3.10", "3.11", "3.12", "3.13", "3.14"]
+
+[tool.hatch.envs.hatch-test.scripts]
+run = "pytest{env:HATCH_TEST_ARGS:} {args}"
+run-cov = "coverage run -m pytest{env:HATCH_TEST_ARGS:} {args}"
+cov-combine = "coverage combine"
+cov-report = ["coverage report {args}", "coverage html"]
+cov-report-markdown = "coverage report --format=markdown"
+
+[tool.hatch.envs.notebook]
+dependencies = ["ipywidgets", "jupyterlab", "pip"]
+
+[tool.hatch.envs.notebook.scripts]
+lab = "jupyter lab"
+
+[tool.hatch.envs.pre-commit]
+detached = true
+skip-install = true
+dependencies = ["pre-commit"]
+
+[tool.hatch.envs.pre-commit.scripts]
+install = "pre-commit install"
+run = "pre-commit run --all {args}"
+ci = "pre-commit run --all-files"
+
+[tool.hatch.metadata.hooks.vcs]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+version_scheme = "no-guess-dev"
+local_scheme = "no-local-version"
+
+# --------------------------------------------------------------------------------------
+# [tool.pyrefly]
+[tool.pyrefly]
+python-version = "3.10"
+preset = "strict"
+project-includes = ["src/spanwend", "tests"]
+search-path = ["src", "."]
+disable-search-path-heuristics = true
+errors = { implicit-any-lambda = "ignore" }
+
+# --------------------------------------------------------------------------------------
+# [tool.pytest]
+[tool.pytest.ini_options]
+addopts = "-ra -q --doctest-modules --doctest-glob='*.md'"
+testpaths = [
+    "tests",
+    "src/spanwend",
+    "README.md",
+    "docs/site",
+]
+
+# --------------------------------------------------------------------------------------
+# [tool.ruff]
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+indent-width = 4
+src = ["src"]
+include = ["scripts/**/*.py", "src/**/*.py", "src/**/*.pyi", "tests/**/*.py"]
+exclude = ["**/_version.py"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.lint]
+select = ["D", "E", "F", "I", "UP", "W"]
+ignore = [
+    "D1",
+    "D205",
+    "E203",
+    # Below as recommended at https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+    "D203",
+    "D206",
+    "D300",
+    "E111",
+    "E114",
+    "E117",
+    "E501",
+    "W191",
+]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "double"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
