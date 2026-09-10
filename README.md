@@ -18,10 +18,10 @@ Encoding and conversion preserve span boundaries and labels, and report when a t
 
 ## Installation
 
-`spanwend` requires Python 3.10 or later (see [Compatibility and versioning](#compatibility-and-versioning)).
+`spanwend` requires Python 3.10 or later (see [compatibility and versioning](#compatibility-and-versioning)).
 It has no runtime dependencies.
 
-Install the latest release from PyPI:
+Install the latest release from [PyPI](https://pypi.org/project/spanwend/):
 
 ```shell
 python -m pip install spanwend
@@ -320,8 +320,8 @@ All code included in the project is reviewed and tested by [@pdhall99](https://g
 
 ## Contributing
 
-See the [contributor guide](docs/CONTRIBUTING.md).
+See the [contributor guide](https://github.com/pdhall99/spanwend/blob/main/docs/CONTRIBUTING.md).
 
 ## License
 
-[MIT © PD Hall](LICENSE)
+[MIT © PD Hall](https://github.com/pdhall99/spanwend/blob/main/LICENSE)

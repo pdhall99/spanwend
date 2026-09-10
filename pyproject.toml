@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 [project]
 name = "spanwend"
 dynamic = ["version"]
-description = "A library for working with sequence-tagging schemes"
+description = "A Python library for working with sequence-tagging schemes"
 readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.10"
 license = "MIT"
@@ -33,25 +33,29 @@ authors = [
     { name = "PD Hall", email = "20580126+pdhall99@users.noreply.github.com" },
 ]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
-    "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
 ]
 dependencies = []
 
 [project.urls]
-homepage = "https://github.com/pdhall99/spanwend"
-documentation = "https://github.com/pdhall99/spanwend/blob/main/README.md"
-source = "https://github.com/pdhall99/spanwend.git"
-changelog = "https://github.com/pdhall99/spanwend/blob/main/docs/CHANGELOG.md"
+Homepage = "https://github.com/pdhall99/spanwend"
+Documentation = "https://github.com/pdhall99/spanwend/blob/main/README.md"
+Source = "https://github.com/pdhall99/spanwend"
+Issues = "https://github.com/pdhall99/spanwend/issues"
+Changelog = "https://github.com/pdhall99/spanwend/blob/main/docs/CHANGELOG.md"
 
 # --------------------------------------------------------------------------------------
 # [dependency-groups]
@@ -181,8 +185,6 @@ dependencies = ["pre-commit"]
 install = "pre-commit install"
 run = "pre-commit run --all {args}"
 ci = "pre-commit run --all-files"
-
-[tool.hatch.metadata.hooks.vcs]
 
 [tool.hatch.metadata]
 allow-direct-references = true
