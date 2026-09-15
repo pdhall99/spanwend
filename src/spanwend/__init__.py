@@ -1,4 +1,6 @@
-"""Loss-aware operations for sequence tags and labelled spans."""
+"""A library for working with sequence-tagging schemes."""
+
+from importlib.metadata import PackageNotFoundError, version
 
 from spanwend._api import (
     check_conformance,
@@ -18,10 +20,17 @@ from spanwend._representability import RepresentabilityCode, RepresentabilityRes
 from spanwend._span import Span
 from spanwend._syntax import DEFAULT_SYNTAX, TagSyntax
 
+try:
+    __version__ = version("spanwend")
+except PackageNotFoundError:
+    __version__ = "unknown"
+finally:
+    del PackageNotFoundError, version
+
 __all__ = [
-    "DEFAULT_SYNTAX",
     "ConfiguredScheme",
     "ConformanceResult",
+    "DEFAULT_SYNTAX",
     "Diagnostic",
     "DiagnosticCode",
     "InvalidTagSequenceError",
@@ -36,6 +45,7 @@ __all__ = [
     "SpanwendError",
     "TagSyntax",
     "UnrepresentableError",
+    "__version__",
     "check_conformance",
     "check_representability",
     "convert",

@@ -16,9 +16,9 @@ permissions:
 env:
   RUNNER: &runner "ubuntu-24.04"
   JOB_TIMEOUT: &job_timeout 30
-  TOOL_PYTHON_VERSION: "3.12"
+  TOOL_PYTHON_VERSION: "3.10"
   HATCH_VERSION: "1.18.0"
-  UV_VERSION: "0.12.5"
+  UV_VERSION: "0.12.13"
   DISTRIBUTION_NAME: "spanwend"
   IMPORT_NAME: "spanwend"
   DOCS_ENABLED: "false"

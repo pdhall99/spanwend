@@ -12,11 +12,7 @@ Thank you for considering making a contribution.
   - `hatch>=1.17`
 - Access to the internet for GitHub and installation of packages from PyPI
 
-If `hatch` is not available in your development environment, install it by running
-
-```shell
-uv tool install "hatch>=1.17"
-```
+If Hatch is not available in your development environment, see the [Hatch installation instructions](https://hatch.pypa.io/latest/install/).
 
 ## Setup
 
@@ -60,15 +56,14 @@ The core package is intentionally dependency-free; a new runtime dependency requ
 
 ### Checks
 
-Making a pull request normally triggers CI checks, which must pass before the pull request can be merged into main.
+Pull requests must pass checks in CI before they can be merged into main.
 
-Run these same checks in your development environment and fix any problems before opening a pull request:
+Run the same checks in your development environment and fix any problems before opening a pull request
 
 ```shell
 hatch check code --fix  # Check and fix linting and formatting using ruff - Note that this mutates files
 hatch check types  # Check type annotations using pyrefly
 hatch test --all  # Run tests using pytest for all locally available versions of python in the matrix
-hatch run docs:build  # Build the Zensical documentation site
 hatch run pre-commit:ci  # Run all pre-commit hooks
 ```
 

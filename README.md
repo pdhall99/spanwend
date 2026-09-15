@@ -21,7 +21,9 @@ Encoding and conversion preserve span boundaries and labels, and report when a t
 `spanwend` requires Python 3.10 or later (see [compatibility and versioning](#compatibility-and-versioning)).
 It has no runtime dependencies.
 
-Install the latest release from [PyPI](https://pypi.org/project/spanwend/):
+`spanwend` is available from [PyPI](https://pypi.org/project/quirer/).
+Install it with your preferred Python package manager.
+For example, using `pip`:
 
 ```shell
 python -m pip install spanwend
@@ -196,8 +198,7 @@ Scheme name inputs are case-insensitive. spanwend supports the following schemes
 | BMES | `bmes` | — | `B`, `M`, `E`, `S` | — |
 | BMEOW / BMEWO | `bmeow` | `bmewo` | `B`, `M`, `E`, `W` | — |
 
-The bare name `"iob"` is deliberately rejected because it is ambiguous: use
-`"iob1"` for IOB1 or `"bio"`/`"iob2"` for BIO/IOB2.
+The bare name `"iob"` is rejected because it is ambiguous: use `"iob1"` for IOB1 or `"bio"`/`"iob2"` for BIO/IOB2.
 
 ### Spans
 
@@ -307,7 +308,7 @@ For releases before `1.0.0`, the public API should be considered under developme
 
 This project supports Python feature releases from their official final release until their official end-of-life (EOL).
 
-Support for a new Python feature release is generally introduced in the first minor release of spanwend following the upstream Python release.
+Support for a new Python feature release is generally introduced in the first minor release of this project following the upstream Python release.
 Python feature releases may be dropped once they reach the end of their upstream support cycle.
 The currently supported Python versions are declared in the package metadata.
 
