@@ -21,7 +21,7 @@ Encoding and conversion preserve span boundaries and labels, and report when a t
 `spanwend` requires Python 3.10 or later (see [compatibility and versioning](#compatibility-and-versioning)).
 It has no runtime dependencies.
 
-`spanwend` is available from [PyPI](https://pypi.org/project/quirer/).
+`spanwend` is available from [PyPI](https://pypi.org/project/spanwend/).
 Install it with your preferred Python package manager.
 For example, using `pip`:
 
