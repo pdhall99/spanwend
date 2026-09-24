@@ -1,10 +1,8 @@
 # spanwend
 
-A Python library for working with sequence-tagging schemes.
+Convert between sequence tags and spans, with validation and repair for BIO, BILOU, IOB1, and related schemes.
 
-Convert between tag sequences and spans, check tag-sequence conformance, and repair malformed tags using explicit policies.
-spanwend supports BIO, BILOU, IOB1, and other flat tagging schemes.
-Encoding and conversion preserve span boundaries and labels, and report when a target scheme cannot represent them faithfully.
+spanwend preserves span boundaries and labels across conversions, detects when a target scheme cannot represent them faithfully, and makes repair of malformed tag sequences explicit rather than automatic.
 
 ## Table of contents
 

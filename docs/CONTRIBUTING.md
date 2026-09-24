@@ -1,7 +1,5 @@
 # Contributing
 
-A Python library for working with sequence-tagging schemes.
-
 Thank you for considering making a contribution.
 
 Contributions can include:
