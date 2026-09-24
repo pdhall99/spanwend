@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 [project]
 name = "spanwend"
 dynamic = ["version"]
-description = "A Python library for working with sequence-tagging schemes"
+description = "Convert between sequence tags and spans, with validation and repair for BIO, BILOU, IOB1, and related schemes"
 readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.10"
 license = "MIT"
