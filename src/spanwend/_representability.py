@@ -1,10 +1,10 @@
 """Public representability check results."""
 
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 
 
-class RepresentabilityCode(str, Enum):
+class RepresentabilityCode(StrEnum):
     """Reason that span cannot be encoded faithfully."""
 
     DUPLICATE_SPAN = "duplicate_span"

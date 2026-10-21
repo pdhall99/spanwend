@@ -1,10 +1,10 @@
 """Structured validation diagnostics."""
 
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 
 
-class DiagnosticCode(str, Enum):
+class DiagnosticCode(StrEnum):
     """Tag diagnostic kind."""
 
     TAG_MISSING_SEPARATOR = "tag_missing_separator"
