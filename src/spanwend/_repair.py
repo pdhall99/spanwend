@@ -1,13 +1,13 @@
 """Explicit, auditable repair of supported malformed tag sequences."""
 
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 
 from spanwend._diagnostic import Diagnostic, DiagnosticCode
 from spanwend._input import _TagSequence
 
 
-class RepairPolicy(str, Enum):
+class RepairPolicy(StrEnum):
     """Named repair conventions supported by `repair`."""
 
     CONLLEVAL = "conlleval"
