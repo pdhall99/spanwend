@@ -1,5 +1,11 @@
 # spanwend
 
+[![CI](https://img.shields.io/github/actions/workflow/status/pdhall99/spanwend/ci.yml?branch=main)](https://github.com/pdhall99/spanwend/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/spanwend)](https://pypi.org/project/spanwend/)
+[![Python](https://img.shields.io/pypi/pyversions/spanwend)](https://pypi.org/project/spanwend/)
+[![Runtime dependencies](https://img.shields.io/badge/runtime%20dependencies-0-brightgreen)](https://github.com/pdhall99/spanwend/blob/main/pyproject.toml)
+[![License](https://img.shields.io/github/license/pdhall99/spanwend)](https://github.com/pdhall99/spanwend/blob/main/LICENSE)
+
 Convert between sequence tags and spans, with validation and repair for BIO, BILOU, IOB1, and related schemes.
 
 spanwend preserves span boundaries and labels across conversions, detects when a target scheme cannot represent them faithfully, and makes repair of malformed tag sequences explicit rather than automatic.
