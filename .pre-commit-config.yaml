@@ -18,7 +18,8 @@ repos:
       - id: mixed-line-ending
       - id: name-tests-test
         args: [--pytest-test-first]
-        exclude: ^tests/conformance/(_conformance|_intervals)\.py$
+        # Test helper modules start with an underscore
+        exclude: ^tests/(.*/)?_[^/]*\.py$
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
 

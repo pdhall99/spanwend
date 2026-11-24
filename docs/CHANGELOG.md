@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- `Import-Name` package metadata ([PEP 794](https://peps.python.org/pep-0794/)), declaring `spanwend` as the import name
+
 ### Removed
 
 - Support for Python 3.10, making Python 3.11 the minimum supported version

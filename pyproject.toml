@@ -1,12 +1,13 @@
 # [build-system]
 [build-system]
 build-backend = "hatchling.build"
-requires = [ "hatch-vcs", "hatchling" ]
+requires = [ "hatch-vcs", "hatchling>=1.32" ]
 
 # --------------------------------------------------------------------------------------
 # [project]
 [project]
 name = "spanwend"
+import-names = [ "spanwend" ]
 description = """\
     Convert between sequence tags and spans, with validation and repair for BIO, \
     BILOU, IOB1, and related schemes\
@@ -76,20 +77,21 @@ test = [
     "hypothesis~=6.0",
     "iobes==1.5.1",
     "pytest~=9.0",
-    "pytest-mock~=3.10",
-    "pytest-randomly~=4.1",
+    "pytest-mock~=3.12",
+    "pytest-randomly~=5.0",
     "pytest-rerunfailures~=16.0",
     "pytest-sugar",
     "pytest-xdist[psutil]~=3.5",
     "seqscore==0.9",
 ]
-docs = [
-    "mkdocstrings-python",
-    "zensical",
-]
 check-code = [ "ruff==0.17.6" ]  # keep consistent with pre-commit-config.yaml
 check-fmt = [ { include-group = "check-code" } ]
 check-types = [ "pyrefly==1.5", { include-group = "test" } ]
+
+# --------------------------------------------------------------------------------------
+# [tool.hatch]
+[tool.hatch]
+requires-hatch = ">=1.18"
 
 [tool.hatch.version.raw-options]
 version_scheme = "no-guess-dev"
@@ -101,8 +103,6 @@ source = "vcs"
 [tool.hatch.metadata]
 allow-direct-references = true
 
-# --------------------------------------------------------------------------------------
-# [tool.hatch]
 [tool.hatch.build.hooks.vcs]
 version-file = "src/spanwend/_version.py"
 
@@ -122,14 +122,6 @@ dependencies = []
 post-install-commands = [ "hatch run pre-commit:install" ]
 dependency-groups = [ "dev" ]
 
-[tool.hatch.envs.docs]
-dependencies = []
-dependency-groups = [ "docs" ]
-
-[tool.hatch.envs.docs.scripts]
-build = "zensical build"
-serve = "zensical serve"
-
 [tool.hatch.envs.hatch-check-code]
 dependencies = []
 config-path = "pyproject.toml"
@@ -145,6 +137,11 @@ python = "3.11"
 dependencies = []
 config-path = "pyproject.toml"
 dependency-groups = [ "check-types" ]
+
+[tool.hatch.envs.hatch-static-analysis]
+dependencies = []
+config-path = "pyproject.toml"
+dependency-groups = [ "check-code" ]
 
 [tool.hatch.envs.hatch-test]
 dependencies = []
@@ -223,7 +220,7 @@ column_width = 88
 indent = 4
 keep_full_version = false
 generate_python_version_classifiers = false
-max_supported_python = "3.14"
+max_supported_python = "3.15"
 table_format = "long"
 sub_table_spacing = "\n"
 separate_root_table = "\n"
@@ -243,14 +240,17 @@ preset = "strict"
 
 # --------------------------------------------------------------------------------------
 # [tool.pytest]
-[tool.pytest.ini_options]
+[tool.pytest]
+addopts = [ "-ra", "-q", "--doctest-modules", "--doctest-glob=*.md" ]
+filterwarnings = [ "error" ]
+log_level = "INFO"
+minversion = "9.0"
+strict = true
 testpaths = [
     "tests",
     "src/spanwend",
     "README.md",
-    # "docs/site",
 ]
-addopts = "-ra -q --doctest-modules --doctest-glob='*.md'"
 
 # --------------------------------------------------------------------------------------
 # [tool.coverage]
