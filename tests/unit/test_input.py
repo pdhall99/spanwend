@@ -27,6 +27,7 @@ _TAG_OPERATIONS: tuple[TagOperation, ...] = (
     lambda tags: repair(tags, scheme="bio", policy="conlleval"),
     lambda tags: convert(tags, source="bio", target="bio"),
 )
+_TAG_OPERATION_IDS = ("decode", "check_conformance", "repair", "convert")
 _SPAN_OPERATIONS: tuple[SpanOperation, ...] = (
     lambda spans: encode(spans, length=3, scheme="bio") == ("B-PER", "O", "B-ORG"),
     lambda spans: (
@@ -37,6 +38,7 @@ _SPAN_OPERATIONS: tuple[SpanOperation, ...] = (
         ).representable
     ),
 )
+_SPAN_OPERATION_IDS = ("encode", "check_representability")
 
 
 class _BrokenTags:
@@ -131,7 +133,7 @@ def test_public_span_operations_accept_unlabelled_tuple_and_mapping_inputs() -> 
     assert encode(spans, length=4, scheme="bio") == ("B", "I", "O", "B")
 
 
-@pytest.mark.parametrize("operation", _SPAN_OPERATIONS)
+@pytest.mark.parametrize("operation", _SPAN_OPERATIONS, ids=_SPAN_OPERATION_IDS)
 def test_span_operations_materialize_generator_once(operation: SpanOperation) -> None:
     consumed = 0
 
@@ -185,8 +187,8 @@ def test_span_input_field_values_use_canonical_span_validation() -> None:
         _normalize_spans([{"start": 0, "end": 1, "label": " "}])
 
 
-@pytest.mark.parametrize("operation", _TAG_OPERATIONS)
-@pytest.mark.parametrize("tags", ["O", b"O"])
+@pytest.mark.parametrize("operation", _TAG_OPERATIONS, ids=_TAG_OPERATION_IDS)
+@pytest.mark.parametrize("tags", ["O", b"O"], ids=["str", "bytes"])
 def test_public_tag_operations_reject_scalar_string_like_inputs(
     operation: TagOperation,
     tags: object,
@@ -195,13 +197,13 @@ def test_public_tag_operations_reject_scalar_string_like_inputs(
         operation(tags)
 
 
-@pytest.mark.parametrize("operation", _TAG_OPERATIONS)
+@pytest.mark.parametrize("operation", _TAG_OPERATIONS, ids=_TAG_OPERATION_IDS)
 def test_public_tag_operations_reject_non_iterables(operation: TagOperation) -> None:
     with pytest.raises(TypeError, match="expected an iterable of tag strings"):
         operation(3)
 
 
-@pytest.mark.parametrize("operation", _TAG_OPERATIONS)
+@pytest.mark.parametrize("operation", _TAG_OPERATIONS, ids=_TAG_OPERATION_IDS)
 def test_generator_iteration_type_errors_are_not_rewritten(
     operation: TagOperation,
 ) -> None:

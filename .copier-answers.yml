@@ -1,0 +1,29 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 16ecf4e
+_src_path: gh:pdhall99/python-project-template
+author_email: 20580126+pdhall99@users.noreply.github.com
+author_name: PD Hall
+copyright_year: 2026
+docs_enabled: false
+github_owner: pdhall99
+keywords:
+- bilou
+- bio
+- entity recognition
+- iob
+- named entity recognition
+- natural language processing
+- ner
+- nlp
+- sequence labeling
+- sequence labelling
+- sequence tags
+- span conversion
+- span encoding
+- span representation
+package_name: spanwend
+project_description: Convert between sequence tags and spans, with validation and
+    repair for BIO, BILOU, IOB1, and related schemes
+project_name: spanwend
+python_support: eol
+runtime_dependencies: []
