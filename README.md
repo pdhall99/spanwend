@@ -22,7 +22,7 @@ spanwend preserves span boundaries and labels across conversions, detects when a
 
 ## Installation
 
-`spanwend` requires Python 3.11 or later (see [compatibility and versioning](#compatibility-and-versioning)).
+`spanwend` requires Python 3.11 or later (see [Compatibility and versioning](#compatibility-and-versioning)).
 It has no runtime dependencies.
 
 `spanwend` is available from [PyPI](https://pypi.org/project/spanwend/).

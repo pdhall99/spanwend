@@ -84,7 +84,7 @@ test = [
     "pytest-xdist[psutil]~=3.5",
     "seqscore==0.9",
 ]
-check-code = [ "ruff==0.17.6" ]  # keep consistent with pre-commit-config.yaml
+check-code = [ "ruff==0.17.6" ]  # checked by the ruff-version pre-commit hook
 check-fmt = [ { include-group = "check-code" } ]
 check-types = [ "pyrefly==1.5", { include-group = "test" } ]
 
@@ -99,9 +99,6 @@ local_scheme = "no-local-version"
 
 [tool.hatch.version]
 source = "vcs"
-
-[tool.hatch.metadata]
-allow-direct-references = true
 
 [tool.hatch.build.hooks.vcs]
 version-file = "src/spanwend/_version.py"
@@ -189,9 +186,6 @@ quote-style = "double"
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = [ "F401" ]
-
-[tool.ruff.lint.flake8-quotes]
-inline-quotes = "double"
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
